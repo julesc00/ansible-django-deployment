@@ -1,0 +1,12 @@
+---
+- hosts: all
+  gather_facts: no
+  vars:
+    ssh_path: /home/ubuntu/.ssh/
+  tasks:
+    - name: Create a new system user
+      user: name=ubuntu generate_ssh_key=yes ssh_key_bits=4096 ssh_key_file=.ssh/id_rsa
+    - name: Read ssh public key
+      slurp: "{{ ssh_path }}id_rsa.pub"
+      register: public_key
+    - debug: msg="{{ public_key['content'] | b64decode }}"

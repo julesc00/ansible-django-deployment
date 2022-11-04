@@ -1,0 +1,9 @@
+all:
+    hosts: yourserver
+    vars:
+        repo_url: ssh://git@github.com/julesc00
+        repo: django_ansible_deployment
+        home_dir: /home/ubuntu
+        repo_dir: "{{ home_dir }}/{{ repo }}"
+        django_dir: "{{ repo_dir }}/django"
+        django_project: budgetmanager
